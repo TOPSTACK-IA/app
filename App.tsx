@@ -5,9 +5,15 @@ import { Header } from './components/Header';
 import { Dashboard } from './components/Dashboard';
 import { GoogleAdsTools } from './components/GoogleAdsTools';
 import { Settings } from './components/Settings';
+import { Projects } from './components/Projects';
+import { Automations } from './components/Automations';
+import { Marketing } from './components/Marketing';
+import { Access } from './components/Access';
+import { Companies } from './components/Companies';
+import { Services } from './components/Services';
 import { Login } from './components/Login';
 
-export type ViewType = 'overview' | 'projects' | 'automations' | 'google-ads' | 'settings';
+export type ViewType = 'overview' | 'projects' | 'marketing' | 'companies' | 'services' | 'automations' | 'google-ads' | 'access' | 'settings';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,14 +49,14 @@ const App: React.FC = () => {
         
         <main className="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-black custom-scrollbar">
           {currentView === 'overview' && <Dashboard />}
+          {currentView === 'services' && <Services />}
+          {currentView === 'projects' && <Projects />}
+          {currentView === 'marketing' && <Marketing />}
+          {currentView === 'companies' && <Companies />}
           {currentView === 'google-ads' && <GoogleAdsTools />}
+          {currentView === 'access' && <Access />}
           {currentView === 'settings' && <Settings onLogout={handleLogout} />}
-          {(currentView === 'projects' || currentView === 'automations') && (
-            <div className="flex flex-col items-center justify-center h-full text-gray-500 dark:text-gray-400">
-              <h2 className="text-xl font-bold mb-2 tracking-tight">Módulo de {currentView === 'projects' ? 'Projetos' : 'Automações'}</h2>
-              <p className="text-sm font-medium">Funcionalidade em desenvolvimento para gestão interna TOPSTACK.</p>
-            </div>
-          )}
+          {currentView === 'automations' && <Automations />}
         </main>
       </div>
     </div>
